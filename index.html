@@ -1,650 +1,628 @@
-<section class="coop-local-web-page">
-  <style>
-    .coop-local-web-page {
-      --coop-bg: #f6f2eb;
-      --coop-surface: #ffffff;
-      --coop-ink: #111111;
-      --coop-muted: #5f5a52;
-      --coop-line: rgba(17, 17, 17, 0.1);
-      --coop-soft: #efe8de;
-      --coop-radius: 24px;
-      --coop-radius-sm: 18px;
-      --coop-shadow: 0 22px 60px rgba(0, 0, 0, 0.08);
-      background: var(--coop-bg);
-      color: var(--coop-ink);
-      font-family: "Helvetica Neue", Arial, sans-serif;
-    }
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Cooperative — Websites for Local Businesses</title>
+    <meta
+      name="description"
+      content="The Cooperative builds clean, modern websites for local businesses that need to look credible, current, and easy to contact."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --section: #ffffff;
+        --section-alt: #f6f3ee;
+        --ink: #111111;
+        --muted: #5d5953;
+        --line: rgba(17, 17, 17, 0.12);
+        --max: 3000px;
+        --page-pad: 3vw;
+        --content-max: 1400px;
+        --header-pad: clamp(22px, 2.9vw, 44px);
+        --radius: 0px;
+      }
 
-    .coop-local-web-page * { box-sizing: border-box; }
-    .coop-local-wrap {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: clamp(20px, 4vw, 56px);
-    }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
 
-    .coop-local-kicker,
-    .coop-local-eyebrow,
-    .coop-local-chip,
-    .coop-local-stat-label {
-      display: inline-block;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--coop-muted);
-    }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
 
-    .coop-local-title,
-    .coop-local-section-title,
-    .coop-local-card-title,
-    .coop-local-mockup-title,
-    .coop-local-cta-title,
-    .coop-local-price {
-      font-family: "Instrument Serif", Georgia, serif;
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.02;
-      margin: 0;
-      color: var(--coop-ink);
-    }
+      .site-shell {
+        max-width: var(--max);
+        margin: 0 auto;
+        background: #fff;
+      }
 
-    .coop-local-shell {
-      display: grid;
-      gap: 28px;
-    }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(12px);
+        background: rgba(255,255,255,0.9);
+        border-bottom: 1px solid rgba(17,17,17,0.08);
+      }
 
-    .coop-local-panel {
-      background: var(--coop-surface);
-      border: 1px solid var(--coop-line);
-      border-radius: var(--coop-radius);
-      box-shadow: var(--coop-shadow);
-      overflow: hidden;
-    }
+      .site-header-inner,
+      .page-section-inner {
+        width: min(calc(100% - (var(--page-pad) * 2)), var(--content-max));
+        margin: 0 auto;
+      }
 
-    .coop-local-hero {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      min-height: 720px;
-    }
+      .site-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: var(--header-pad) 0;
+      }
 
-    .coop-local-hero-copy {
-      padding: clamp(30px, 5vw, 60px);
-      background:
-        radial-gradient(circle at top left, rgba(0,0,0,0.05), transparent 34%),
-        linear-gradient(180deg, #fff 0%, #f8f4ee 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
 
-    .coop-local-kicker { margin-bottom: 16px; }
+      .brand-mark {
+        width: clamp(54px, 8vw, 112px);
+      }
 
-    .coop-local-title {
-      font-size: clamp(52px, 8vw, 98px);
-      max-width: 8.6ch;
-      margin-bottom: 18px;
-    }
+      .brand-name {
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
 
-    .coop-local-lead {
-      font-size: clamp(18px, 2.1vw, 25px);
-      line-height: 1.5;
-      color: var(--coop-muted);
-      max-width: 24ch;
-      margin: 0 0 28px;
-    }
+      .header-link {
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
 
-    .coop-local-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
+      .page-section {
+        position: relative;
+        border-top: 1px solid var(--line);
+      }
 
-    .coop-local-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 24px;
-      border-radius: 999px;
-      border: 1px solid var(--coop-ink);
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform .2s ease, background .2s ease, color .2s ease;
-    }
+      .page-section:first-of-type { border-top: none; }
+      .page-section.theme-alt { background: var(--section-alt); }
 
-    .coop-local-button:hover { transform: translateY(-1px); }
-    .coop-local-button--primary { background: var(--coop-ink); color: #fff; }
-    .coop-local-button--secondary { background: transparent; color: var(--coop-ink); }
+      .page-section-inner {
+        padding: clamp(48px, 7vw, 120px) 0;
+      }
 
-    .coop-local-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 18px;
-      font-size: 14px;
-      color: var(--coop-muted);
-    }
+      .eyebrow {
+        margin: 0 0 18px;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
 
-    .coop-local-proof span::before {
-      content: "•";
-      margin-right: 8px;
-      color: var(--coop-ink);
-    }
-    .coop-local-proof span:first-child::before { content: ""; margin-right: 0; }
+      .display,
+      .section-title,
+      .card-title,
+      .stat-number,
+      .quote,
+      .cta-title {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        line-height: 0.98;
+        margin: 0;
+      }
 
-    .coop-local-hero-visual {
-      background: #111111;
-      color: #fff;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+      .display { font-size: clamp(58px, 9vw, 138px); max-width: 10ch; }
+      .lead {
+        margin: 22px 0 0;
+        max-width: 38ch;
+        font-size: clamp(20px, 2.2vw, 28px);
+        line-height: 1.45;
+        color: var(--muted);
+      }
 
-    .coop-local-chip {
-      color: rgba(255,255,255,0.9);
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.1);
-      border-radius: 999px;
-      padding: 9px 12px;
-      margin-bottom: 18px;
-    }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(24px, 3vw, 56px);
+        align-items: center;
+      }
 
-    .coop-local-browser {
-      border-radius: 18px;
-      overflow: hidden;
-      background: #fbf8f2;
-      color: var(--coop-ink);
-      box-shadow: 0 18px 44px rgba(0,0,0,0.2);
-      min-height: 470px;
-      display: flex;
-      flex-direction: column;
-    }
+      .hero-copy { padding-right: clamp(0px, 2vw, 24px); }
 
-    .coop-local-browser-top {
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #fff;
-      border-bottom: 1px solid rgba(17,17,17,0.08);
-    }
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
 
-    .coop-local-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(17,17,17,0.18);
-    }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0 24px;
+        border: 1px solid var(--ink);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: background .2s ease, color .2s ease, opacity .2s ease;
+      }
 
-    .coop-local-url {
-      margin-left: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #f1ece4;
-      color: #675f55;
-      font-size: 12px;
-    }
+      .button.primary { background: var(--ink); color: #fff; }
+      .button.secondary { background: transparent; color: var(--ink); }
+      .button:hover { opacity: 0.82; }
 
-    .coop-local-browser-body {
-      padding: 28px;
-      background: linear-gradient(180deg, #fcfaf6 0%, #f5eee4 100%);
-      display: grid;
-      gap: 24px;
-      flex: 1;
-    }
+      .hero-visual {
+        display: grid;
+        gap: 18px;
+      }
 
-    .coop-local-mockup-title {
-      font-size: clamp(34px, 4vw, 60px);
-      max-width: 8ch;
-      margin-bottom: 12px;
-    }
+      .hero-card,
+      .quote-card,
+      .stat-card,
+      .offer-card,
+      .process-card,
+      .service-card,
+      .faq-card {
+        border: 1px solid var(--line);
+        background: #fff;
+      }
 
-    .coop-local-mockup-copy {
-      line-height: 1.6;
-      color: #5f584e;
-      max-width: 34ch;
-      margin: 0;
-    }
-
-    .coop-local-mockup-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .coop-local-mini {
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(17,17,17,0.08);
-      border-radius: 14px;
-      padding: 16px;
-      min-height: 116px;
-    }
-
-    .coop-local-mini strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    .coop-local-mini span {
-      display: block;
-      color: #6b6358;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .coop-local-visual-footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.72);
-      margin-top: 18px;
-    }
-
-    .coop-local-section {
-      padding: clamp(28px, 4vw, 44px);
-    }
-
-    .coop-local-section-head {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 28px;
-      align-items: end;
-      margin-bottom: 28px;
-    }
-
-    .coop-local-section-title {
-      font-size: clamp(36px, 5vw, 64px);
-      max-width: 10ch;
-    }
-
-    .coop-local-section-copy {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.65;
-      color: var(--coop-muted);
-      max-width: 54ch;
-    }
-
-    .coop-local-grid-3,
-    .coop-local-grid-2,
-    .coop-local-pricing,
-    .coop-local-process,
-    .coop-local-stats {
-      display: grid;
-      gap: 18px;
-    }
-
-    .coop-local-grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .coop-local-grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .coop-local-pricing { grid-template-columns: 1.1fr 0.9fr; }
-    .coop-local-process { grid-template-columns: repeat(4, 1fr); }
-    .coop-local-stats { grid-template-columns: repeat(3, 1fr); }
-
-    .coop-local-card,
-    .coop-local-step,
-    .coop-local-stat {
-      background: #fff;
-      border: 1px solid var(--coop-line);
-      border-radius: var(--coop-radius-sm);
-      padding: 24px;
-    }
-
-    .coop-local-card-title {
-      font-size: 34px;
-      margin-bottom: 12px;
-    }
-
-    .coop-local-card p,
-    .coop-local-card li,
-    .coop-local-step p,
-    .coop-local-stat p {
-      color: var(--coop-muted);
-      line-height: 1.6;
-    }
-
-    .coop-local-card ul {
-      margin: 14px 0 0;
-      padding-left: 18px;
-    }
-
-    .coop-local-card li + li { margin-top: 8px; }
-
-    .coop-local-price-card {
-      background: #111111;
-      color: #fff;
-      border-radius: var(--coop-radius);
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .coop-local-price-card p,
-    .coop-local-price-card li,
-    .coop-local-price-card .coop-local-eyebrow { color: rgba(255,255,255,0.78); }
-
-    .coop-local-price {
-      font-size: clamp(44px, 6vw, 76px);
-      color: #fff;
-    }
-
-    .coop-local-clean-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .coop-local-clean-list li {
-      padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      line-height: 1.5;
-    }
-
-    .coop-local-stat-number {
-      font-family: "Instrument Serif", Georgia, serif;
-      font-size: clamp(38px, 5vw, 58px);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .coop-local-step {
-      min-height: 230px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .coop-local-step-num {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--coop-ink);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .coop-local-step h3 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.2;
-    }
-
-    .coop-local-cta {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
-      background: linear-gradient(180deg, #ffffff, #f4ede3);
-    }
-
-    .coop-local-cta-title {
-      font-size: clamp(36px, 5vw, 66px);
-      max-width: 11ch;
-      margin-bottom: 12px;
-    }
-
-    .coop-local-cta p {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.65;
-      color: var(--coop-muted);
-      max-width: 48ch;
-    }
-
-    @media (max-width: 1100px) {
-      .coop-local-hero,
-      .coop-local-section-head,
-      .coop-local-pricing,
-      .coop-local-cta {
+      .hero-card {
+        display: grid;
         grid-template-columns: 1fr;
+        min-height: 620px;
       }
 
-      .coop-local-grid-3,
-      .coop-local-process,
-      .coop-local-stats {
-        grid-template-columns: repeat(2, 1fr);
+      .hero-image {
+        min-height: 380px;
+        background-image: linear-gradient(rgba(0,0,0,0.12), rgba(0,0,0,0.12)), url('https://images.squarespace-cdn.com/content/v1/68fac8a3d20e8d72215ede75/1761538771269-C6TV1HLWQOK9TZK9VQQZ/THECOOP-DSC09509.jpg?format=1500w');
+        background-size: cover;
+        background-position: center;
       }
-    }
 
-    @media (max-width: 767px) {
-      .coop-local-wrap { padding: 18px; }
-      .coop-local-grid-3,
-      .coop-local-grid-2,
-      .coop-local-process,
-      .coop-local-stats,
-      .coop-local-mockup-grid { grid-template-columns: 1fr; }
-      .coop-local-actions { flex-direction: column; }
-      .coop-local-button { width: 100%; }
-      .coop-local-hero { min-height: auto; }
-    }
-  </style>
+      .hero-card-copy {
+        padding: clamp(24px, 3vw, 34px);
+        background: #fff;
+      }
 
-  <div class="coop-local-wrap">
-    <div class="coop-local-shell">
-      <section class="coop-local-panel coop-local-hero">
-        <div class="coop-local-hero-copy">
-          <div class="coop-local-kicker">The Cooperative — Local Business Website Launches</div>
-          <h1 class="coop-local-title">Modern websites for local businesses that need to look as good online as they are in real life.</h1>
-          <p class="coop-local-lead">We build clean, mobile-first websites for cafés, bakeries, plumbers, salons, service companies, and other local businesses that need to look current, credible, and easy to contact.</p>
-          <div class="coop-local-actions">
-            <a class="coop-local-button coop-local-button--primary" href="#coop-local-contact">Get a Website Quote</a>
-            <a class="coop-local-button coop-local-button--secondary" href="#coop-local-offer">See the Offer</a>
+      .hero-card-copy h2 {
+        margin: 0 0 14px;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: clamp(34px, 4vw, 54px);
+        font-weight: 400;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-card-copy p,
+      .section-copy,
+      .offer-card p,
+      .process-card p,
+      .service-card p,
+      .faq-card p,
+      .quote-sub {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+        font-size: 17px;
+      }
+
+      .section-heading-grid,
+      .two-col,
+      .cta-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: clamp(22px, 3vw, 44px);
+        align-items: end;
+      }
+
+      .section-title { font-size: clamp(42px, 6vw, 88px); max-width: 9ch; }
+
+      .card-grid-3,
+      .card-grid-2,
+      .stats-grid,
+      .process-grid,
+      .service-grid {
+        display: grid;
+        gap: 0;
+        border-left: 1px solid var(--line);
+        border-top: 1px solid var(--line);
+        margin-top: clamp(28px, 4vw, 46px);
+      }
+
+      .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .process-grid { grid-template-columns: repeat(4, 1fr); }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .offer-card,
+      .process-card,
+      .service-card,
+      .stat-card,
+      .faq-card {
+        padding: clamp(24px, 3vw, 34px);
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        min-height: 100%;
+      }
+
+      .card-title { font-size: clamp(30px, 3vw, 48px); margin-bottom: 14px; }
+
+      .list {
+        margin: 18px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .list li { margin-top: 10px; line-height: 1.55; }
+
+      .quote-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border: 1px solid var(--line);
+        margin-top: clamp(28px, 4vw, 46px);
+      }
+
+      .quote-card,
+      .quote-image {
+        min-height: 420px;
+      }
+
+      .quote-card {
+        padding: clamp(28px, 4vw, 42px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #fff;
+      }
+
+      .quote {
+        font-size: clamp(36px, 5vw, 72px);
+        max-width: 11ch;
+        margin-bottom: 18px;
+      }
+
+      .quote-image {
+        background-image: url('https://images.squarespace-cdn.com/content/v1/68fac8a3d20e8d72215ede75/1761528691180-RJLF04J1JGHPI25W6QJG/THECOOP-DSC09485.jpg?format=1500w');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .stat-number {
+        font-size: clamp(42px, 5vw, 72px);
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        display: inline-block;
+        margin-bottom: 12px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .process-number {
+        display: inline-block;
+        margin-bottom: 18px;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .cta-title { font-size: clamp(44px, 6vw, 88px); max-width: 9ch; }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .site-footer-inner {
+        width: min(calc(100% - (var(--page-pad) * 2)), var(--content-max));
+        margin: 0 auto;
+        padding: 28px 0 46px;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 1100px) {
+        .hero-grid,
+        .section-heading-grid,
+        .two-col,
+        .cta-grid,
+        .quote-wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .card-grid-3,
+        .stats-grid,
+        .process-grid,
+        .service-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 767px) {
+        :root { --page-pad: 20px; }
+        .site-header-inner { padding: 18px 0; }
+        .brand { gap: 12px; }
+        .brand-mark { width: 72px; }
+        .button-row { flex-direction: column; }
+        .button { width: 100%; }
+        .card-grid-3,
+        .card-grid-2,
+        .stats-grid,
+        .process-grid,
+        .service-grid {
+          grid-template-columns: 1fr;
+        }
+        .site-footer-inner {
+          flex-direction: column;
+          padding-bottom: 34px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <div class="brand">
+            <img class="brand-mark" src="https://images.squarespace-cdn.com/content/v1/68fac8a3d20e8d72215ede75/6669040e-00b7-4113-a0c0-a29b3706227f/Asset+26.png?format=500w" alt="The Cooperative" />
+            <div class="brand-name">The Cooperative</div>
           </div>
-          <div class="coop-local-proof">
-            <span>Fast launch</span>
-            <span>Mobile-first</span>
-            <span>Copy help included</span>
-            <span>Monthly upkeep available</span>
-          </div>
+          <a class="header-link" href="#contact">Text Us</a>
         </div>
+      </header>
 
-        <div class="coop-local-hero-visual">
-          <div>
-            <div class="coop-local-chip">Built for real local businesses</div>
-            <div class="coop-local-browser">
-              <div class="coop-local-browser-top">
-                <span class="coop-local-dot"></span>
-                <span class="coop-local-dot"></span>
-                <span class="coop-local-dot"></span>
-                <div class="coop-local-url">yourbusiness.com</div>
-              </div>
-              <div class="coop-local-browser-body">
-                <div>
-                  <div class="coop-local-eyebrow">Page Preview</div>
-                  <h2 class="coop-local-mockup-title">Your next customer should trust you in five seconds.</h2>
-                  <p class="coop-local-mockup-copy">Real services. Real contact info. Real proof. A website that makes people think, “Yep — these folks are legit.”</p>
+      <main>
+        <section class="page-section">
+          <div class="page-section-inner">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <p class="eyebrow">Websites for Local Businesses</p>
+                <h1 class="display">You don’t need a bigger agency. You need a website that finally looks like your business is worth calling.</h1>
+                <p class="lead">We build clean, modern websites for cafés, bakeries, plumbers, salons, boutiques, and service businesses that need to look current, credible, and easy to contact.</p>
+                <div class="button-row">
+                  <a class="button primary" href="#contact">Get a Website Quote</a>
+                  <a class="button secondary" href="#offer">See What’s Included</a>
                 </div>
-                <div class="coop-local-mockup-grid">
-                  <div class="coop-local-mini"><strong>Clear offer</strong><span>What you do, who it’s for, and why it matters.</span></div>
-                  <div class="coop-local-mini"><strong>Trust points</strong><span>Reviews, photos, service area, and clean brand presentation.</span></div>
-                  <div class="coop-local-mini"><strong>Easy contact</strong><span>Call, text, form, map, and direct next-step buttons.</span></div>
+              </div>
+              <div class="hero-visual">
+                <div class="hero-card">
+                  <div class="hero-image"></div>
+                  <div class="hero-card-copy">
+                    <h2>Simple websites can make a big difference for the right business.</h2>
+                    <p>If your real-world business is solid but your online presence feels thin, outdated, or nonexistent, we close that gap fast — with a site that looks polished, reads clearly, and makes it easy for customers to reach out.</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="coop-local-visual-footer">
-            <span>Simple to launch</span>
-            <span>Strong first impression</span>
-            <span>Built to convert</span>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="coop-local-panel coop-local-section">
-        <div class="coop-local-section-head">
-          <div>
-            <div class="coop-local-eyebrow">The problem</div>
-            <h2 class="coop-local-section-title">A lot of good businesses still look rough online.</h2>
-          </div>
-          <p class="coop-local-section-copy">Maybe you have no website. Maybe your current site looks ten years old. Maybe it technically exists, but it doesn’t help you win trust or make it easy for people to reach you. That gap costs real business — especially when somebody finds you on Google and decides in a few seconds whether to call.</p>
-        </div>
+        <section class="page-section theme-alt">
+          <div class="page-section-inner">
+            <div class="section-heading-grid">
+              <div>
+                <p class="eyebrow">The problem</p>
+                <h2 class="section-title">A lot of good businesses still look rough online.</h2>
+              </div>
+              <p class="section-copy">No website. Old website. Confusing website. Broken mobile experience. Weak messaging. Missing trust. For a lot of local businesses, the website is either absent or quietly hurting them. That’s fixable.</p>
+            </div>
 
-        <div class="coop-local-grid-3">
-          <div class="coop-local-card">
-            <h3 class="coop-local-card-title">No Website</h3>
-            <p>You’ve built the business through reputation, referrals, and hustle — but online there’s nothing strong backing you up.</p>
+            <div class="card-grid-3">
+              <div class="offer-card">
+                <h3 class="card-title">No Website</h3>
+                <p>You’ve built the business on word of mouth, repeat customers, and hustle — but online there’s almost nothing backing you up.</p>
+              </div>
+              <div class="offer-card">
+                <h3 class="card-title">Outdated Website</h3>
+                <p>Your site technically exists, but it looks dated, feels thin, and doesn’t reflect how good the business actually is.</p>
+              </div>
+              <div class="offer-card">
+                <h3 class="card-title">No Time for a Big Project</h3>
+                <p>You do not want ten meetings and a pile of agency jargon. You want something clear, current, and done right.</p>
+              </div>
+            </div>
           </div>
-          <div class="coop-local-card">
-            <h3 class="coop-local-card-title">Outdated Website</h3>
-            <p>Your site feels stale, thin, or off-brand, and it quietly lowers confidence before someone ever reaches out.</p>
-          </div>
-          <div class="coop-local-card">
-            <h3 class="coop-local-card-title">No Time for a Big Project</h3>
-            <p>You do not want a giant web process. You want something clean, modern, and done right without wasting weeks.</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="coop-local-panel coop-local-section" id="coop-local-offer">
-        <div class="coop-local-section-head">
-          <div>
-            <div class="coop-local-eyebrow">What we offer</div>
-            <h2 class="coop-local-section-title">Launch the site. Then keep it current.</h2>
-          </div>
-          <p class="coop-local-section-copy">We’re not trying to sell you a bloated agency retainer. This is a practical offer for local businesses: get a modern site live fast, then keep it updated so it stays useful instead of becoming another stale asset.</p>
-        </div>
+        <section class="page-section" id="offer">
+          <div class="page-section-inner">
+            <div class="section-heading-grid">
+              <div>
+                <p class="eyebrow">What exactly do we do?</p>
+                <h2 class="section-title">We build and maintain websites for local businesses.</h2>
+              </div>
+              <p class="section-copy">This is not a bloated custom-development pitch. It’s a practical offer: launch a clean, mobile-first site that makes your business look legitimate and makes contacting you easy — then keep it updated over time if you want ongoing support.</p>
+            </div>
 
-        <div class="coop-local-pricing">
-          <div class="coop-local-card">
-            <h3 class="coop-local-card-title">Website Launch</h3>
-            <p>A clean, well-written, mobile-first site built around trust, clarity, and getting customers to take the next step.</p>
-            <ul>
-              <li>Homepage or service-led landing page build</li>
-              <li>Professional layout matched to your business type</li>
-              <li>Copy support so the message is clear and credible</li>
-              <li>Service sections, trust sections, reviews, and contact paths</li>
-              <li>Designed to feel polished without becoming overcomplicated</li>
-            </ul>
+            <div class="card-grid-2">
+              <div class="offer-card">
+                <h3 class="card-title">Website Launch</h3>
+                <p>A modern, well-written site built around trust, clarity, and getting people to take the next step.</p>
+                <ul class="list">
+                  <li>Homepage or focused service-led landing page</li>
+                  <li>Copy guidance so the message feels sharp and real</li>
+                  <li>Sections for services, trust points, reviews, and contact</li>
+                  <li>Mobile-first layout that feels current, not cobbled together</li>
+                </ul>
+              </div>
+              <div class="offer-card">
+                <h3 class="card-title">Monthly Upkeep</h3>
+                <p>For owners who don’t want the site to become another stale asset they have to think about.</p>
+                <ul class="list">
+                  <li>Hosting and routine platform upkeep</li>
+                  <li>Small text, photo, and offer changes</li>
+                  <li>Backups, monitoring, and general cleanup</li>
+                  <li>Ongoing refreshes so the site stays current and useful</li>
+                </ul>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div class="coop-local-price-card">
-            <div class="coop-local-eyebrow">Simple pricing model</div>
-            <div class="coop-local-price">Setup + Monthly</div>
-            <p>One-time build fee for launch. Optional monthly fee for hosting, updates, edits, backups, and keeping the site from getting stale.</p>
-            <ul class="coop-local-clean-list">
-              <li><strong>Best for:</strong> owners who want a real web presence without babysitting it</li>
-              <li><strong>Monthly support includes:</strong> upkeep, small edits, and refreshes as the business changes</li>
-              <li><strong>Outcome:</strong> a site that stays current, credible, and useful</li>
-            </ul>
+        <section class="page-section theme-alt">
+          <div class="page-section-inner">
+            <div class="quote-wrap">
+              <div class="quote-card">
+                <p class="eyebrow">What matters most</p>
+                <p class="quote">Your website should make people trust you faster — not make them hesitate.</p>
+                <p class="quote-sub">For most local businesses, that’s the whole game. Clear offer. Real proof. Easy contact. Strong first impression.</p>
+              </div>
+              <div class="quote-image"></div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="coop-local-panel coop-local-section">
-        <div class="coop-local-section-head">
-          <div>
-            <div class="coop-local-eyebrow">Why it works</div>
-            <h2 class="coop-local-section-title">Simple websites can make a big difference.</h2>
-          </div>
-          <p class="coop-local-section-copy">For most local businesses, the website doesn’t need to be fancy. It needs to build confidence, answer basic questions, show real proof, and make contacting you easy.</p>
-        </div>
+        <section class="page-section">
+          <div class="page-section-inner">
+            <div class="section-heading-grid">
+              <div>
+                <p class="eyebrow">Why this matters</p>
+                <h2 class="section-title">Most small businesses don’t need something fancy. They need something credible.</h2>
+              </div>
+              <p class="section-copy">A solid one-page or small brochure-style site can do a lot when the message is right. It should answer the basics, show proof, feel current, and make reaching out painless.</p>
+            </div>
 
-        <div class="coop-local-stats">
-          <div class="coop-local-stat">
-            <div class="coop-local-stat-number">5 sec</div>
-            <div class="coop-local-stat-label">First impression window</div>
-            <p>People decide fast whether a business feels current, trustworthy, and worth contacting.</p>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-number">5 sec</div>
+                <div class="stat-label">First impression window</div>
+                <p>People decide very quickly whether a business feels professional and worth contacting.</p>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">1 page</div>
+                <div class="stat-label">Can be enough</div>
+                <p>One strong page often beats a bigger, messier site that says too much and guides nobody.</p>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">Ongoing</div>
+                <div class="stat-label">Optional care</div>
+                <p>Hours, offers, services, photos, and priorities change. The site should keep up with the business.</p>
+              </div>
+            </div>
           </div>
-          <div class="coop-local-stat">
-            <div class="coop-local-stat-number">1 page</div>
-            <div class="coop-local-stat-label">Often enough to win</div>
-            <p>One strong page can do a lot when the message, trust points, and CTA are handled well.</p>
-          </div>
-          <div class="coop-local-stat">
-            <div class="coop-local-stat-number">Ongoing</div>
-            <div class="coop-local-stat-label">Optional upkeep</div>
-            <p>Hours change. Services change. Photos change. The site should keep up with the business.</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="coop-local-panel coop-local-section">
-        <div class="coop-local-section-head">
-          <div>
-            <div class="coop-local-eyebrow">What’s included</div>
-            <h2 class="coop-local-section-title">Everything a local business actually needs.</h2>
-          </div>
-          <p class="coop-local-section-copy">No giant sitemap. No overengineered nonsense. Just the pieces that make the business easier to trust and easier to contact.</p>
-        </div>
+        <section class="page-section theme-alt">
+          <div class="page-section-inner">
+            <div class="section-heading-grid">
+              <div>
+                <p class="eyebrow">What’s included</p>
+                <h2 class="section-title">Everything a local business actually needs.</h2>
+              </div>
+              <p class="section-copy">No giant sitemap. No fluffy strategy decks. Just the stuff that helps a business look better and convert better online.</p>
+            </div>
 
-        <div class="coop-local-grid-2">
-          <div class="coop-local-card">
-            <h3 class="coop-local-card-title">Build Features</h3>
-            <ul>
-              <li>Strong headline and value proposition</li>
-              <li>Service overview and offer clarity</li>
-              <li>About / trust-building section</li>
-              <li>Review or testimonial integration</li>
-              <li>Contact form, click-to-call, or text CTA</li>
-              <li>Map, hours, service area, and key business details</li>
-            </ul>
+            <div class="service-grid">
+              <div class="service-card">
+                <h3 class="card-title">Build Features</h3>
+                <ul class="list">
+                  <li>Clear headline and value proposition</li>
+                  <li>Service overview and business positioning</li>
+                  <li>Trust-building copy and review integration</li>
+                  <li>Contact form, call, text, and map options</li>
+                  <li>Mobile-first design that feels clean and modern</li>
+                </ul>
+              </div>
+              <div class="service-card">
+                <h3 class="card-title">Best Fit Businesses</h3>
+                <ul class="list">
+                  <li>Cafés and bakeries</li>
+                  <li>Plumbers, electricians, HVAC, and trades</li>
+                  <li>Salons, spas, and local wellness brands</li>
+                  <li>Boutiques and neighborhood retail</li>
+                  <li>Other owner-led local businesses that need a stronger web presence</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="coop-local-card">
-            <h3 class="coop-local-card-title">Monthly Support</h3>
-            <ul>
-              <li>Hosting and basic monitoring</li>
-              <li>Updates, backups, and routine maintenance</li>
-              <li>Small content and photo changes</li>
-              <li>Offer swaps and seasonal refreshes</li>
-              <li>Light cleanup to keep everything looking current</li>
-              <li>One less thing for you to think about</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="coop-local-panel coop-local-section">
-        <div class="coop-local-section-head">
-          <div>
-            <div class="coop-local-eyebrow">How it works</div>
-            <h2 class="coop-local-section-title">Low drag. Fast turnaround. Clear process.</h2>
-          </div>
-          <p class="coop-local-section-copy">You should not need ten meetings to get a solid website live. We keep the process tight and practical.</p>
-        </div>
+        <section class="page-section">
+          <div class="page-section-inner">
+            <div class="section-heading-grid">
+              <div>
+                <p class="eyebrow">How it works</p>
+                <h2 class="section-title">Low drag. Fast turnaround. Clear path.</h2>
+              </div>
+              <p class="section-copy">This should not become a giant web project. We keep the process tight so you can get something strong live without a bunch of friction.</p>
+            </div>
 
-        <div class="coop-local-process">
-          <div class="coop-local-step">
-            <div class="coop-local-step-num">01</div>
-            <h3>Quick Discovery</h3>
-            <p>We gather the essentials: business type, services, service area, contact info, offers, and anything that makes you different.</p>
+            <div class="process-grid">
+              <div class="process-card">
+                <div class="process-number">01</div>
+                <h3 class="card-title">Quick Discovery</h3>
+                <p>We get the basics: what you do, where you operate, what makes you different, and what needs to be on the page.</p>
+              </div>
+              <div class="process-card">
+                <div class="process-number">02</div>
+                <h3 class="card-title">Build the Site</h3>
+                <p>We create a clean, modern page with better messaging, better structure, and better trust signals.</p>
+              </div>
+              <div class="process-card">
+                <div class="process-number">03</div>
+                <h3 class="card-title">Review & Refine</h3>
+                <p>You review the draft, we tighten the details, and make sure it feels like your business — not a template.</p>
+              </div>
+              <div class="process-card">
+                <div class="process-number">04</div>
+                <h3 class="card-title">Launch & Maintain</h3>
+                <p>We publish it and, if you want, keep it current so it stays accurate, polished, and useful over time.</p>
+              </div>
+            </div>
           </div>
-          <div class="coop-local-step">
-            <div class="coop-local-step-num">02</div>
-            <h3>Build the Page</h3>
-            <p>We design a clean, mobile-first page with strong messaging, clear structure, and practical calls to action.</p>
-          </div>
-          <div class="coop-local-step">
-            <div class="coop-local-step-num">03</div>
-            <h3>Review & Tighten</h3>
-            <p>You review it, we refine the details, and make sure it feels right for your business and your customers.</p>
-          </div>
-          <div class="coop-local-step">
-            <div class="coop-local-step-num">04</div>
-            <h3>Launch & Maintain</h3>
-            <p>We publish it and, if you want, keep it updated so it stays accurate, polished, and useful over time.</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="coop-local-panel coop-local-section coop-local-cta" id="coop-local-contact">
-        <div>
-          <h2 class="coop-local-cta-title">Need a website that finally makes your business look the part?</h2>
-          <p>We help local businesses launch clean, modern websites that build trust quickly and make it easy for people to reach out.</p>
+        <section class="page-section theme-alt" id="contact">
+          <div class="page-section-inner">
+            <div class="cta-grid">
+              <div>
+                <p class="eyebrow">Let’s see if we’re a good fit.</p>
+                <h2 class="cta-title">Need a website that finally makes your business look the part?</h2>
+              </div>
+              <div>
+                <p class="section-copy">If you’re ready to launch something cleaner, sharper, and easier for customers to trust, let’s talk. We’ll keep it practical and build a website that fits the business you actually have.</p>
+                <div class="button-row">
+                  <a class="button primary" href="sms:+12253847228">Text Us</a>
+                  <a class="button secondary" href="mailto:lance@thecoopbrla.com">Email Us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <div>The Cooperative — Local Business Web Presence</div>
+          <div>Baton Rouge, Louisiana</div>
         </div>
-        <div class="coop-local-actions" style="margin:0;">
-          <a class="coop-local-button coop-local-button--primary" href="sms:+12253847228">Text Us</a>
-          <a class="coop-local-button coop-local-button--secondary" href="mailto:lance@thecoopbrla.com">Email Us</a>
-        </div>
-      </section>
+      </footer>
     </div>
-  </div>
-</section>
+  </body>
+</html>
